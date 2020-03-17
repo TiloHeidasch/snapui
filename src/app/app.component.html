@@ -1,20 +1,79 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<mat-toolbar color="primary" class="position-fixed hide-on-print">
+  <span class="app-title">{{title}}</span>
+</mat-toolbar>
+<div id="content" *ngIf="server!=null">
+  <mat-card class="groupCard" *ngFor="let group of server.groups; let i=index">
+    <mat-card-title>
+      <ng-container *ngIf="group.name===''; then thenTemplate; else elseTemplate"></ng-container>
+      <ng-template #thenTemplate>
+        Group{{i+1}}
+      </ng-template>
+      <ng-template #elseTemplate>
+        {{group.name}}
+      </ng-template>
+      <mat-icon (click)="infoGroup(group)">info</mat-icon>
+      <mat-icon (click)="editGroup(group)">edit</mat-icon>
+      <button mat-button id="groupMute" (click)="muteGroup(group)">
+        <mat-icon *ngIf="group.muted">volume_off</mat-icon>
+        <mat-icon *ngIf="!group.muted">volume_up</mat-icon>
+      </button>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <div id="streamSelectionContainer">
+        <div id="streamSelection">
+          <button mat-button id="previousStream" (click)="previousStream(group)">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <div id="streamIcon">
+            <img class="icon" *ngIf="isSpotifyStream(findStreamForId(group.stream_id))"
+              src="https://upload.wikimedia.org/wikipedia/commons/7/71/Spotify.png" alt="Spotify">
+            <img class="icon" *ngIf="isBluetoothStream(findStreamForId(group.stream_id))"
+              src="https://upload.wikimedia.org/wikipedia/commons/d/da/Bluetooth.svg" alt="Bluetooth">
+            <img class="icon"
+              *ngIf="!isBluetoothStream(findStreamForId(group.stream_id))&&!isSpotifyStream(findStreamForId(group.stream_id))"
+              src="https://upload.wikimedia.org/wikipedia/commons/4/47/Sound-icon.svg" alt="Stream">
+          </div>
+          <button mat-button id="nextStream" (click)="nextStream(group)">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+          <div id="streamPlaying" *ngIf="isStreamPlaying(findStreamForId(group.stream_id))"> <img
+              src="assets/equalizer.svg"></div>
+        </div>
+        <p id="Stream Label">{{group.stream_id}}</p>
+      </div>
+    </mat-card-subtitle>
+    <mat-card-content>
+      <mat-card class="client" *ngFor="let client of group.clients">
+        <mat-card-title>
+          <ng-container *ngIf="client.config.name===''; then thenTemplate; else elseTemplate"></ng-container>
+          <ng-template #thenTemplate>
+            {{client.host.name}}
+          </ng-template>
+          <ng-template #elseTemplate>
+            {{client.config.name}}
+          </ng-template>
+          <mat-icon (click)="infoClient(client)">info</mat-icon>
+          <mat-icon (click)="editClient(client,group)">edit</mat-icon>
+        </mat-card-title>
+        <mat-card-content>
+          <div id="clientVolumeControl">
+            <button mat-button id="clientMute" [disabled]="!client.connected" (click)="muteClient(client)">
+              <mat-icon *ngIf="client.config.volume.muted">volume_off</mat-icon>
+              <mat-icon *ngIf="!client.config.volume.muted">volume_up</mat-icon>
+            </button>
+            <button mat-button id="clientVolumeDown" [disabled]="!client.connected"
+              (click)="reduceClientVolume(client)">
+              <mat-icon>volume_mute</mat-icon>
+            </button>
+            <mat-slider #clientSlider min="0" max="100" [value]="client.config.volume.percent" thumbLabel="true"
+              (slideend)="setClientVolume(client,clientSlider.value)" [disabled]="!client.connected"></mat-slider>
+            <button mat-button id="clientVolumeUp" [disabled]="!client.connected"
+              (click)="increaseClientVolume(client)">
+              <mat-icon>volume_down</mat-icon>
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-

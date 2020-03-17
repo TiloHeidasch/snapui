@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Edit Client</h2>
+
+<mat-dialog-content>
+    <mat-form-field class="example-form-field">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" [(ngModel)]="newName">
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+</mat-dialog-actions>

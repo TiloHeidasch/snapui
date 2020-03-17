@@ -1,1 +1,53 @@
+@import "~@angular/material/theming";
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+@include mat-core();
+
+@import "themes/theme.scss";
+
+@mixin custom-components-theme($theme) {
+  // place your custom components here...
+}
+
+@include angular-material-theme($app-theme);
+@include custom-components-theme($app-theme);
+
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  margin: 1rem;
+}
+
+// Print options
+@media print {
+  .hide-on-print {
+    display: none !important;
+  }
+
+  .mat-drawer-content {
+    margin-left: 0 !important;
+  }
+
+  .container {
+    margin: 0 !important;
+    position: relative;
+    overflow: auto;
+  }
+
+  .mat-drawer-container {
+    overflow: initial !important;
+  }
+
+  .mat-drawer-content {
+    height: auto !important;
+  }
+
+  .sidenav-container {
+    height: auto !important;
+  }
+}
