@@ -1,10 +1,9 @@
-import { ErrorHandler, Injectable, EventEmitter } from '@angular/core';
-import { Observable, Subject, throwError } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { MessageService } from './message.service';
 import { Group } from '../types/group';
 import { Stream } from '../types/stream';
 import { Client } from '../types/client';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -17,7 +16,7 @@ export class SnapcastService {
   serverStatusRequestId = 1;
   changeSettingRequestId: number = 2;
   constructor(private messageService: MessageService) {
-    this.connection = new WebSocket('ws://10.0.1.10:80/jsonrpc');
+    this.connection = new WebSocket('ws://' + environment.snapcastIp + ':' + environment.snapcastPort + '/jsonrpc');
     const that = this;
     this.connection.onmessage = function (message) {
       var recv = message.data;
