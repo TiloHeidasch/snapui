@@ -45,6 +45,10 @@ export class GroupItemComponent {
         event.previousIndex,
         event.currentIndex
       );
+      const oldGroup = this.server.groups.find(group => group.id === event.previousContainer.id);
+      if (oldGroup.clients.length === 0) {
+        this.server.groups = this.server.groups.filter(group => group.id !== oldGroup.id);
+      }
       this.snapcast.updateClientsInGroup(this.server.groups.find(group => group.id === event.container.id));
     }
   }
