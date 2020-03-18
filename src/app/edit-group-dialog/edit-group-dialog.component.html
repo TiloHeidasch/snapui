@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Edit Group</h2>
 
-<mat-dialog-content>
+<mat-dialog-content (keyup.enter)="save()">
     <mat-form-field class="example-form-field">
         <mat-label>Name</mat-label>
         <input matInput type="text" [(ngModel)]="newName">
