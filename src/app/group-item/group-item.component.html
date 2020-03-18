@@ -1,26 +1,37 @@
-<mat-card class="groupCard">
-    <mat-card-title>
+<div id="groupItem">
+    <mat-toolbar id="groupHeader" color="primary">
         <ng-container *ngIf="group.name===''; then thenTemplate; else elseTemplate"></ng-container>
         <ng-template #thenTemplate>
-            Group{{index+1}}
+            <p class="groupTitle">Group{{index+1}}</p>
         </ng-template>
         <ng-template #elseTemplate>
-            {{group.name}}
+            <p class="groupTitle">{{group.name}}</p>
         </ng-template>
-        <mat-icon (click)="infoGroup(group)">info</mat-icon>
-        <mat-icon (click)="editGroup(group)">edit</mat-icon>
-        <button mat-button id="groupMute" (click)="muteGroup(group)">
-            <mat-icon *ngIf="group.muted">volume_off</mat-icon>
-            <mat-icon *ngIf="!group.muted">volume_up</mat-icon>
-        </button>
-    </mat-card-title>
-    <mat-card-subtitle>
-        <stream-selection [server]="server" [group]="group"></stream-selection>
-    </mat-card-subtitle>
-    <mat-card-content>
-        <div cdkDropList id="{{ group.id }}" [cdkDropListData]="group.clients"
-            [cdkDropListConnectedTo]="allGroupDropLists" class="example-list" (cdkDropListDropped)="drop($event)">
-            <client-item *ngFor="let client of group.clients" [client]="client" cdkDrag></client-item>
+        <div id="groupButtons">
+            <button mat-icon-button id="groupEdit" (click)="editGroup(group)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button id="groupInfo" (click)="infoGroup(group)">
+                <mat-icon>info</mat-icon>
+            </button>
+            <button mat-icon-button id="groupMute" (click)="muteGroup(group)">
+                <mat-icon *ngIf="group.muted">volume_off</mat-icon>
+                <mat-icon *ngIf="!group.muted">volume_up</mat-icon>
+            </button>
         </div>
-    </mat-card-content>
-</mat-card>
+    </mat-toolbar>
+    <div id="groupContent">
+        <div cdkDropList id="{{ group.id }}" [cdkDropListData]="group.clients"
+            [cdkDropListConnectedTo]="allGroupDropLists" (cdkDropListDropped)="drop($event)">
+            <div cdkDrag class="clientContainer" *ngFor="let client of group.clients">
+                <div cdkDragHandle id="clientDragHandle">
+                    <mat-icon>drag_handle</mat-icon>
+                </div>
+                <client-item [client]="client"></client-item>
+            </div>
+        </div>
+        <div id="groupStream">
+            <stream-selection [server]="server" [group]="group"></stream-selection>
+        </div>
+    </div>
+</div>

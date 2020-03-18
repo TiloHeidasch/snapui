@@ -13,6 +13,7 @@ import { GroupInfoDialogComponent } from './group-info-dialog/group-info-dialog.
 import { GroupItemComponent } from './group-item/group-item.component';
 import { StreamSelectionComponent } from './stream-selection/stream-selection.component';
 import { ClientItemComponent } from './client-item/client-item.component';
+import { ClientVolumeControlComponent } from './client-volume-control/client-volume-control.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ClientItemComponent } from './client-item/client-item.component';
     GroupItemComponent,
     StreamSelectionComponent,
     ClientItemComponent,
+    ClientVolumeControlComponent,
   ],
   imports: [
     BrowserModule,

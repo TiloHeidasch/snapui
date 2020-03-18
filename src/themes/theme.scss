@@ -2,4 +2,4 @@ $app-primary: mat-palette($mat-indigo, 700, 600, 500);
 $app-accent: mat-palette($mat-light-blue, 400, 300, 200);
 $app-warn: mat-palette($mat-red, A200);
 
-$app-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);

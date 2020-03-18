@@ -1,7 +1,4 @@
-<mat-toolbar color="primary" class="position-fixed hide-on-print">
-  <span class="app-title">{{title}}</span>
-</mat-toolbar>
-<div id="content" *ngIf="server!=null">
+<div class="content" *ngIf="server!=null">
   <group-item *ngFor="let group of server.groups; let i=index" [group]="group" [index]="i" [server]="server"
     [allGroupDropLists]="allGroupDropLists">
   </group-item>

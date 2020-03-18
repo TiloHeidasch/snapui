@@ -1,0 +1,28 @@
+#groupItem {
+  box-shadow: 0px 0px 10px 1px gray;
+  margin: 1rem;
+}
+#groupHeader {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.groupTitle {
+  font-size: x-large;
+  font-weight: bold;
+}
+#groupContent {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.clientContainer {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+  border: thin lightgray;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  padding: 0.5rem;
+}
