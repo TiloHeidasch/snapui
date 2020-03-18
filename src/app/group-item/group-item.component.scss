@@ -1,8 +1,8 @@
-#groupItem {
+.groupItem {
   box-shadow: 0px 0px 10px 1px gray;
   margin: 1rem;
 }
-#groupHeader {
+.groupHeader {
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -11,8 +11,9 @@
 .groupTitle {
   font-size: x-large;
   font-weight: bold;
+  margin: 0 !important;
 }
-#groupContent {
+.groupContent {
   margin: 1rem;
   display: flex;
   justify-content: space-between;
@@ -22,7 +23,6 @@
   align-items: center;
   margin: 1rem;
   border: thin lightgray;
-  border-top-style: solid;
   border-bottom-style: solid;
   padding: 0.5rem;
 }

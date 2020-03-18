@@ -1,5 +1,5 @@
-<div id="groupItem">
-    <mat-toolbar id="groupHeader" color="primary">
+<div class="groupItem">
+    <mat-toolbar class="groupHeader" color="primary">
         <ng-container *ngIf="group.name===''; then thenTemplate; else elseTemplate"></ng-container>
         <ng-template #thenTemplate>
             <p class="groupTitle">Group{{index+1}}</p>
@@ -7,30 +7,30 @@
         <ng-template #elseTemplate>
             <p class="groupTitle">{{group.name}}</p>
         </ng-template>
-        <div id="groupButtons">
-            <button mat-icon-button id="groupEdit" (click)="editGroup(group)">
+        <div class="groupButtons">
+            <button mat-icon-button class="groupEdit" (click)="editGroup(group)">
                 <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button id="groupInfo" (click)="infoGroup(group)">
+            <button mat-icon-button class="groupInfo" (click)="infoGroup(group)">
                 <mat-icon>info</mat-icon>
             </button>
-            <button mat-icon-button id="groupMute" (click)="muteGroup(group)">
+            <button mat-icon-button class="groupMute" (click)="muteGroup(group)">
                 <mat-icon *ngIf="group.muted">volume_off</mat-icon>
                 <mat-icon *ngIf="!group.muted">volume_up</mat-icon>
             </button>
         </div>
     </mat-toolbar>
-    <div id="groupContent">
+    <div class="groupContent">
         <div cdkDropList id="{{ group.id }}" [cdkDropListData]="group.clients"
             [cdkDropListConnectedTo]="allGroupDropLists" (cdkDropListDropped)="drop($event)">
             <div cdkDrag class="clientContainer" *ngFor="let client of group.clients">
-                <div cdkDragHandle id="clientDragHandle">
+                <div cdkDragHandle class="clientDragHandle">
                     <mat-icon>drag_handle</mat-icon>
                 </div>
                 <client-item [client]="client"></client-item>
             </div>
         </div>
-        <div id="groupStream">
+        <div class="groupStream">
             <stream-selection [server]="server" [group]="group"></stream-selection>
         </div>
     </div>

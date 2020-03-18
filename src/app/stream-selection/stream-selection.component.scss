@@ -8,4 +8,23 @@
 }
 #streamSelection {
   display: flex;
+  align-items: center;
+}
+#streamSelectionContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#streamLabel {
+  display: flex;
+  justify-content: center;
+}
+#streamPlaying {
+  display: flex;
+  justify-content: center;
+  margin: 0.2rem;
+}
+.streamSelectionItem {
+  margin: 0.2rem;
 }
