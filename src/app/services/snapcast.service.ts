@@ -170,7 +170,7 @@ export class SnapcastService {
   }
 
   updateClientsInGroup(group: Group) {
-    this.send('{"id":' + this.changeSettingRequestId + ',"jsonrpc":"2.0","method":"Group.SetClients","params":{"clients":' + group.clients + ',"id":"' + group.id + '"}}')
+    this.send('{"id":' + this.changeSettingRequestId + ',"jsonrpc":"2.0","method":"Group.SetClients","params":{"clients":' + JSON.stringify(group.clients.map(client => client.id)) + ',"id":"' + group.id + '"}}')
   }
 
   updateClientName(client: Client) {

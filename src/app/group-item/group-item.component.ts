@@ -5,6 +5,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { GroupInfoDialogComponent } from '../group-info-dialog/group-info-dialog.component';
 import { EditGroupDialogComponent } from '../edit-group-dialog/edit-group-dialog.component';
 import { Server } from '../types/server';
+import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'group-item',
@@ -15,6 +16,7 @@ export class GroupItemComponent {
   @Input() group: Group;
   @Input() index: number;
   @Input() server: Server;
+  @Input() allGroupDropLists;
   constructor(private snapcast: SnapcastService, private dialog: MatDialog) { }
 
   muteGroup(group: Group) {
@@ -34,4 +36,16 @@ export class GroupItemComponent {
     this.dialog.open(EditGroupDialogComponent, dialogConfig);
   }
 
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+      this.snapcast.updateClientsInGroup(this.server.groups.find(group => group.id === event.container.id));
+    }
+  }
 }

@@ -19,6 +19,7 @@ import { GroupInfoDialogComponent } from './group-info-dialog/group-info-dialog.
 export class AppComponent {
   title = 'snapui';
   server: Server;
+  allGroupDropLists = [];
   constructor(private messageService: MessageService, private snapcast: SnapcastService, private dialog: MatDialog) {
   }
   ngOnInit(): void {
@@ -27,6 +28,7 @@ export class AppComponent {
     this.messageService.on<string>('SnapcastServerUpdate').subscribe(server => {
       console.log(server);
       this.server = server;
+      this.allGroupDropLists = [...this.server.groups.map(group => group.id)];
     })
   }
 }
