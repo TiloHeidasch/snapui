@@ -22,7 +22,7 @@
     </mat-toolbar>
     <div class="groupContent">
         <div cdkDropList id="{{ group.id }}" [cdkDropListData]="group.clients"
-            [cdkDropListConnectedTo]="allGroupDropLists" (cdkDropListDropped)="drop($event)">
+            [cdkDropListConnectedTo]="allGroupDropLists" (cdkDropListDropped)="drop($event)" class="groupClientList">
             <div cdkDrag class="clientContainer" *ngFor="let client of group.clients">
                 <div cdkDragHandle class="clientDragHandle">
                     <mat-icon>drag_handle</mat-icon>
