@@ -10,6 +10,9 @@ import { ClientInfoDialogComponent } from './client-info-dialog/client-info-dial
 import { EditClientDialogComponent } from './edit-client-dialog/edit-client-dialog.component';
 import { EditGroupDialogComponent } from './edit-group-dialog/edit-group-dialog.component';
 import { GroupInfoDialogComponent } from './group-info-dialog/group-info-dialog.component';
+import { GroupItemComponent } from './group-item/group-item.component';
+import { StreamSelectionComponent } from './stream-selection/stream-selection.component';
+import { ClientItemComponent } from './client-item/client-item.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { GroupInfoDialogComponent } from './group-info-dialog/group-info-dialog.
     ClientInfoDialogComponent,
     EditClientDialogComponent,
     EditGroupDialogComponent,
+    GroupItemComponent,
+    StreamSelectionComponent,
+    ClientItemComponent,
   ],
   imports: [
     BrowserModule,

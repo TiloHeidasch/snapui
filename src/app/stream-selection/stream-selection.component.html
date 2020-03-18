@@ -1,0 +1,22 @@
+<div id="streamSelectionContainer">
+    <div id="streamSelection">
+        <button mat-button id="previousStream" (click)="previousStream(group)">
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+        <div id="streamIcon">
+            <img class="icon" *ngIf="isSpotifyStream(findStreamForId(group.stream_id))"
+                src="https://upload.wikimedia.org/wikipedia/commons/7/71/Spotify.png" alt="Spotify">
+            <img class="icon" *ngIf="isBluetoothStream(findStreamForId(group.stream_id))"
+                src="https://upload.wikimedia.org/wikipedia/commons/d/da/Bluetooth.svg" alt="Bluetooth">
+            <img class="icon"
+                *ngIf="!isBluetoothStream(findStreamForId(group.stream_id))&&!isSpotifyStream(findStreamForId(group.stream_id))"
+                src="https://upload.wikimedia.org/wikipedia/commons/4/47/Sound-icon.svg" alt="Stream">
+        </div>
+        <button mat-button id="nextStream" (click)="nextStream(group)">
+            <mat-icon>chevron_right</mat-icon>
+        </button>
+        <div id="streamPlaying" *ngIf="isStreamPlaying(findStreamForId(group.stream_id))"> <img
+                src="assets/equalizer.svg"></div>
+    </div>
+    <p id="Stream Label">{{group.stream_id}}</p>
+</div>

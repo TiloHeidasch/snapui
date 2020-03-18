@@ -1,0 +1,23 @@
+<mat-card class="groupCard">
+    <mat-card-title>
+        <ng-container *ngIf="group.name===''; then thenTemplate; else elseTemplate"></ng-container>
+        <ng-template #thenTemplate>
+            Group{{index+1}}
+        </ng-template>
+        <ng-template #elseTemplate>
+            {{group.name}}
+        </ng-template>
+        <mat-icon (click)="infoGroup(group)">info</mat-icon>
+        <mat-icon (click)="editGroup(group)">edit</mat-icon>
+        <button mat-button id="groupMute" (click)="muteGroup(group)">
+            <mat-icon *ngIf="group.muted">volume_off</mat-icon>
+            <mat-icon *ngIf="!group.muted">volume_up</mat-icon>
+        </button>
+    </mat-card-title>
+    <mat-card-subtitle>
+        <stream-selection [server]="server" [group]="group"></stream-selection>
+    </mat-card-subtitle>
+    <mat-card-content>
+        <client-item *ngFor="let client of group.clients" [client]="client"></client-item>
+    </mat-card-content>
+</mat-card>
