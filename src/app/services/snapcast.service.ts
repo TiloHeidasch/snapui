@@ -46,7 +46,7 @@ export class SnapcastService {
   }
 
   private publishChange() {
-    this.messageService.broadcast("SnapcastServer", this.server.server);
+    this.messageService.broadcast("SnapcastServerUpdate", this.server.server);
   }
 
   private action(answer) {
