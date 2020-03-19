@@ -120,13 +120,7 @@ export class SnapcastService {
   }
 
   private streamUpdate(params) {
-    // Update all stream inforamtion
-    for (let i_stream = 0; i_stream < this.server.server.streams.length; i_stream++) {
-      if (this.server.server.streams[i_stream].id == params.id) {
-        this.server.server.streams[i_stream] = params.stream;
-        //  console.log(server.server.streams[i_stream]); 
-      }
-    }
+    this.getStatus();
   }
 
 
@@ -165,6 +159,11 @@ export class SnapcastService {
   setStream(group: Group, stream: Stream) {
     this.send('{"id":' + this.changeSettingRequestId + ',"jsonrpc":"2.0","method":"Group.SetStream","params":{"id":"' + group.id + '","stream_id":"' + stream.id + '"}}')
   }
+
+  createSpotifyStream(name: string) {
+    this.send('{"id":' + this.changeSettingRequestId + ',"jsonrpc":"2.0","method":"Stream.AddStream","params":{"streamUri":"spotify:///librespot?name=' + name + '&devicename=' + name + '&bitrate=320"}}')
+  }
+
   updateGroupName(group: Group) {
     this.send('{"id":' + this.changeSettingRequestId + ',"jsonrpc":"2.0","method":"Group.SetName","params":{"id":"' + group.id + '","name":"' + group.name + '"}}')
   }
