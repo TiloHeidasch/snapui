@@ -18,12 +18,12 @@ export class ClientFunctionsService {
   }
   getClientDisplayName(client: Client): string {
     this.checkAndTransformClient(client);
-    return client.config.name.displayName;
+    return this.decode(client.config.name.displayName);
   }
 
   setClientDisplayName(client: Client, displayName: string) {
     this.checkAndTransformClient(client);
-    client.config.name.displayName = displayName;
+    client.config.name.displayName = this.encode(displayName);
     this.snapcast.updateClientName(client);
   }
   getClientMaxVolume(client: Client): number {
@@ -55,6 +55,14 @@ export class ClientFunctionsService {
     }
 
     return false;
+  }
+
+  private encode(string: string): string {
+    return escape(string);
+  }
+
+  private decode(string: string): string {
+    return unescape(string);
   }
   private transformClientNameToObject(client: Client) {
     client.config.name = {
