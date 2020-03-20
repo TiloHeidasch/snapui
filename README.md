@@ -1,22 +1,22 @@
 # SnapUI
 SnapUI is an angular Snapcast UI that mainly targets mobile devices.
 
-![SnapUI1](doc/images/snapui1.png)
+![SnapUI1](docs/images/snapui1.png)
 Simple Layout
 
-![SnapUI1](doc/images/snapui2.png)
+![SnapUI1](docs/images/snapui2.png)
 Click to adjust
 
-![SnapUI1](doc/images/snapui3.png)
+![SnapUI1](docs/images/snapui3.png)
 Edit Name and Icons
 
-![SnapUI1](doc/images/snapui4.png)
+![SnapUI1](docs/images/snapui4.png)
 Simple Drag and Drop grouping
 
-![SnapUI1](doc/images/snapui1.png)
+![SnapUI1](docs/images/snapui1.png)
 Group Volume Control
 
-![SnapUI1](doc/images/snapui6.png)
+![SnapUI1](docs/images/snapui6.png)
 Speaker Volume control and stream selection
 
 ## Design
