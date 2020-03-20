@@ -4,6 +4,6 @@ export class Group {
     clients: Client[];
     id: string;
     muted: boolean;
-    name: string;
+    name;
     stream_id: string;
 }

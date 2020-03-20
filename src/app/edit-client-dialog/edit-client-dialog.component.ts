@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Client } from '../types/client';
 import { SnapcastService } from '../services/snapcast.service';
+import { ClientFunctionsService } from '../services/client-functions.service';
 
 @Component({
   selector: 'app-edit-client-dialog',
@@ -11,9 +12,11 @@ import { SnapcastService } from '../services/snapcast.service';
 export class EditClientDialogComponent implements OnInit {
   client: Client;
   newName: string;
-  constructor(private snapcast: SnapcastService, private dialogRef: MatDialogRef<EditClientDialogComponent>, @Inject(MAT_DIALOG_DATA) client) {
+  newIcon: string;
+  constructor(private clientFunctions: ClientFunctionsService, private snapcast: SnapcastService, private dialogRef: MatDialogRef<EditClientDialogComponent>, @Inject(MAT_DIALOG_DATA) client) {
     this.client = client;
-    this.newName = this.client.config.name;
+    this.newName = clientFunctions.getClientDisplayName(client);
+    this.newIcon = clientFunctions.getClientIcon(client);
   }
 
   ngOnInit() {
@@ -24,9 +27,12 @@ export class EditClientDialogComponent implements OnInit {
   }
 
   save() {
-    this.client.config.name = this.newName;
+    this.clientFunctions.setClientDisplayName(this.client, this.newName);
+    this.clientFunctions.setClientIcon(this.client, this.newIcon);
     this.snapcast.updateClientName(this.client);
     this.dialogRef.close();
   }
-
+  setNewIcon(icon: string) {
+    this.newIcon = icon;
+  }
 }

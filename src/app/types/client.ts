@@ -4,7 +4,7 @@ export class Client {
     config: {
         instance: number;
         latency: number;
-        name: string;
+        name;
         volume: {
             muted: boolean;
             percent: number;

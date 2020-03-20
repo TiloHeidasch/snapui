@@ -1,13 +1,55 @@
-<h2 mat-dialog-title>Edit Client</h2>
-
-<mat-dialog-content (keyup.enter)="save()">
-    <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput type="text" [(ngModel)]="newName">
-    </mat-form-field>
-</mat-dialog-content>
-
-<mat-dialog-actions>
-    <button class="mat-raised-button" (click)="close()">Close</button>
-    <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
-</mat-dialog-actions>
+<div class="editClientRoot">
+    <div class="client">
+        <mat-icon class="icon">{{newIcon}}</mat-icon>
+    </div>
+    <div class="settingsBackground">
+        <div class="settingsContainer">
+            <div class="nameSetting">
+                <input type="text" [(ngModel)]="newName">
+            </div>
+            <div class="iconSetting">
+                <div class="iconRow">
+                    <div class="smallIconContainer" (click)="setNewIcon('account_balance')"
+                        [ngClass]="{'smallIconContainer': true,'active':newIcon==='account_balance'}">
+                        <mat-icon class="iconSmall">account_balance</mat-icon>
+                    </div>
+                    <div class="smallIconContainer" (click)="setNewIcon('eco')"
+                        [ngClass]="{'smallIconContainer': true,'active':newIcon==='eco'}">
+                        <mat-icon class="iconSmall">eco</mat-icon>
+                    </div>
+                    <div class="smallIconContainer" (click)="setNewIcon('gavel')"
+                        [ngClass]="{'smallIconContainer': true,'active':newIcon==='gavel'}">
+                        <mat-icon class="iconSmall">gavel</mat-icon>
+                    </div>
+                    <div class="smallIconContainer" (click)="setNewIcon('home')"
+                        [ngClass]="{'smallIconContainer': true,'active':newIcon==='home'}">
+                        <mat-icon class="iconSmall">home</mat-icon>
+                    </div>
+                    <div class="smallIconContainer" (click)="setNewIcon('work')"
+                        [ngClass]="{'smallIconContainer': true,'active':newIcon==='work'}">
+                        <mat-icon class="iconSmall">work</mat-icon>
+                    </div>
+                </div>
+                <div class="iconRow">
+                    <div class="smallIconContainer" (click)="setNewIcon('equalizer')"
+                        [ngClass]="{'smallIconContainer': true,'active':newIcon==='equalizer'}">
+                        <mat-icon class="iconSmall">equalizer</mat-icon>
+                    </div>
+                    <div class="smallIconContainer" (click)="setNewIcon('games')"
+                        [ngClass]="{'smallIconContainer': true,'active':newIcon==='games'}">
+                        <mat-icon class="iconSmall">games</mat-icon>
+                    </div>
+                    <div class="smallIconContainer" (click)="setNewIcon('radio')"
+                        [ngClass]="{'smallIconContainer': true,'active':newIcon==='radio'}">
+                        <mat-icon class="iconSmall">radio</mat-icon>
+                    </div>
+                    <div class="smallIconContainer" (click)="setNewIcon('king_bed')"
+                        [ngClass]="{'smallIconContainer': true,'active':newIcon==='king_bed'}">
+                        <mat-icon class="iconSmall">king_bed</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="confirm" (click)="save()">OK</div>
+</div>

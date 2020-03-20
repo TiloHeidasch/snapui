@@ -15,6 +15,7 @@ export class SnapcastService {
   server: any = {};
   serverStatusRequestId = 1;
   changeSettingRequestId: number = 2;
+  changeGroupClientRequestId: number = 3;
   constructor(private messageService: MessageService) {
     this.connection = new WebSocket('ws://' + environment.snapcastIp + ':' + environment.snapcastPort + '/jsonrpc');
     const that = this;
@@ -24,7 +25,7 @@ export class SnapcastService {
 
       var answer = JSON.parse(recv);
       console.log(answer);
-      if (answer.id === that.serverStatusRequestId) {
+      if (answer.id === that.serverStatusRequestId || answer.id === that.changeGroupClientRequestId) {
         that.server = answer.result;
         that.publishChange();
       } else if (Array.isArray(answer)) {
@@ -43,6 +44,11 @@ export class SnapcastService {
     this.connection.onerror = function () {
       alert("error");
     }
+    window.onbeforeunload = function () {
+      console.log('onbeforeunload');
+      that.connection.onclose = function () { }; // disable onclose handler first
+      that.connection.close();
+    };
   }
 
   private publishChange() {
@@ -63,7 +69,7 @@ export class SnapcastService {
       case 'Group.OnMute':
         this.groupMute(answer.params);
         break;
-      case 'Group.OnStremChanged':
+      case 'Group.OnStreamChanged':
         this.groupStream(answer.params);
         break;
       case 'Stream.OnUpdate':
@@ -123,7 +129,6 @@ export class SnapcastService {
     this.getStatus();
   }
 
-
   getStatus() {
     this.send('{"id":' + this.serverStatusRequestId + ',"jsonrpc":"2.0","method":"Server.GetStatus"}');
   }
@@ -156,8 +161,8 @@ export class SnapcastService {
     this.send('{"id":' + this.changeSettingRequestId + ',"jsonrpc":"2.0","method":"Group.SetMute","params":{"id":"' + group.id + '","mute":' + group.muted + '}}')
   }
 
-  setStream(group: Group, stream: Stream) {
-    this.send('{"id":' + this.changeSettingRequestId + ',"jsonrpc":"2.0","method":"Group.SetStream","params":{"id":"' + group.id + '","stream_id":"' + stream.id + '"}}')
+  updateGroupStream(group: Group) {
+    this.send('{"id":' + this.changeSettingRequestId + ',"jsonrpc":"2.0","method":"Group.SetStream","params":{"id":"' + group.id + '","stream_id":"' + group.stream_id + '"}}')
   }
 
   createSpotifyStream(name: string) {
@@ -165,15 +170,15 @@ export class SnapcastService {
   }
 
   updateGroupName(group: Group) {
-    this.send('{"id":' + this.changeSettingRequestId + ',"jsonrpc":"2.0","method":"Group.SetName","params":{"id":"' + group.id + '","name":"' + group.name + '"}}')
+    this.send('{"id":' + this.changeSettingRequestId + ',"jsonrpc":"2.0","method":"Group.SetName","params":{"id":"' + group.id + '","name":"' + JSON.stringify(group.name).split('"').join('\\"') + '"}}')
   }
 
   updateClientsInGroup(group: Group) {
-    this.send('{"id":' + this.changeSettingRequestId + ',"jsonrpc":"2.0","method":"Group.SetClients","params":{"clients":' + JSON.stringify(group.clients.map(client => client.id)) + ',"id":"' + group.id + '"}}')
+    this.send('{"id":' + this.changeGroupClientRequestId + ',"jsonrpc":"2.0","method":"Group.SetClients","params":{"clients":' + JSON.stringify(group.clients.map(client => client.id)) + ',"id":"' + group.id + '"}}')
   }
 
   updateClientName(client: Client) {
-    this.send('{"id":' + this.changeSettingRequestId + ',"jsonrpc":"2.0","method":"Client.SetName","params":{"id":"' + client.id + '","name":"' + client.config.name + '"}}')
+    this.send('{"id":' + this.changeSettingRequestId + ',"jsonrpc":"2.0","method":"Client.SetName","params":{"id":"' + client.id + '","name":"' + JSON.stringify(client.config.name).split('"').join('\\"') + '"}}')
   }
   setClientLatency(clientId, latency) {
     this.send('{"id":' + this.changeSettingRequestId + ',"jsonrpc":"2.0","method":"Client.SetLatency","params":{"id":"' + clientId + '","latency":' + latency + '}}')

@@ -1,0 +1,89 @@
+.client {
+  width: 130px;
+  height: 130px;
+  border-radius: 65px;
+  background: linear-gradient(90deg, #06bfff 0%, #2b75ff 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -65px;
+  position: relative;
+}
+.icon {
+  font-size: 60px !important;
+  width: 60px !important;
+  height: 60px !important;
+  color: white;
+}
+.settingsBackground {
+  background: #292929;
+  border-radius: 53px;
+  padding-top: 65px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-bottom: 48px;
+}
+.iconRow {
+  display: flex;
+  justify-content: center;
+}
+.editClientRoot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.iconSmall {
+  font-size: 28px !important;
+  width: 28px !important;
+  height: 28px !important;
+  color: white;
+}
+.smallIconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 46px;
+  height: 46px;
+  background-color: #1f1f1f;
+  border-radius: 23px;
+  margin: 7px;
+}
+.smallIconContainer.active {
+  background: #484848 !important;
+}
+.confirm {
+  width: 68px;
+  height: 34px;
+  margin-top: 26px;
+  background: linear-gradient(90deg, #06bfff 0%, #2b75ff 100%);
+  border-radius: 29px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 25px;
+  line-height: 32px;
+  color: #fff;
+}
+.nameSetting {
+  margin-top: 28px;
+
+  input {
+    width: 100%;
+    border-style: none;
+    background: #1f1f1f;
+    border-radius: 29px;
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 32px;
+    color: #ffffff;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+.iconSetting {
+  margin-top: 11px;
+}

@@ -1,40 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { SnapcastService } from './services/snapcast.service';
 import { FormsModule } from '@angular/forms';
-import { ClientInfoDialogComponent } from './client-info-dialog/client-info-dialog.component';
 import { EditClientDialogComponent } from './edit-client-dialog/edit-client-dialog.component';
-import { EditGroupDialogComponent } from './edit-group-dialog/edit-group-dialog.component';
-import { GroupInfoDialogComponent } from './group-info-dialog/group-info-dialog.component';
-import { GroupItemComponent } from './group-item/group-item.component';
-import { StreamSelectionComponent } from './stream-selection/stream-selection.component';
-import { ClientItemComponent } from './client-item/client-item.component';
-import { ClientVolumeControlComponent } from './client-volume-control/client-volume-control.component';
+import { GroupBottomSheetComponent } from './group-bottom-sheet/group-bottom-sheet.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GroupInfoDialogComponent,
-    ClientInfoDialogComponent,
     EditClientDialogComponent,
-    EditGroupDialogComponent,
-    GroupItemComponent,
-    StreamSelectionComponent,
-    ClientItemComponent,
-    ClientVolumeControlComponent,
+    GroupBottomSheetComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+    ClickOutsideModule,
   ],
   providers: [SnapcastService],
   bootstrap: [AppComponent],
-  entryComponents: [ClientInfoDialogComponent, EditClientDialogComponent, EditGroupDialogComponent, GroupInfoDialogComponent]
+  entryComponents: [
+    EditClientDialogComponent,
+    GroupBottomSheetComponent,
+  ]
 })
 export class AppModule { }

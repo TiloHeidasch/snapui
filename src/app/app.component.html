@@ -1,5 +1,28 @@
 <div class="content" *ngIf="server!=null">
-  <group-item *ngFor="let group of server.groups; let i=index" [group]="group" [index]="i" [server]="server"
-    [allGroupDropLists]="allGroupDropLists">
-  </group-item>
+  <div cdkDropList [cdkDropListConnectedTo]="allGroupDropLists" (cdkDropListDropped)="dragEnd($event)" id="outtop"
+    class="top" (click)="click(null)"></div>
+  <div class="middle">
+    <div cdkDropList [cdkDropListConnectedTo]="allGroupDropLists" (cdkDropListDropped)="dragEnd($event)" id="outside1"
+      class="side" (click)="click(null)"></div>
+    <div class="groups">
+      <div cdkDropList [cdkDropListConnectedTo]="allGroupDropLists" (cdkDropListDropped)="dragEnd($event)"
+        id="{{ group.id }}" class="groupContainer" *ngFor="let group of server.groups; let i=index; last as lastGroup">
+        <div class="editButton" *ngIf="group.clients.length===1&&isGroupActive(group)"
+          (click)="editClient(group.clients[0])">
+          <mat-icon>edit</mat-icon>
+        </div>
+        <div class="group" (click)="click(group)">
+          <div [ngClass]="{'client':true, 'last':lastClient ,'active':isGroupActive(group)}"
+            *ngFor="let client of group.clients; last as lastClient" cdkDrag>
+            <mat-icon class="icon">{{clientFunctions.getClientIcon(client)}}</mat-icon>
+          </div>
+        </div>
+        <div class="groupSpacer" (click)="click(null)" *ngIf="!lastGroup"></div>
+      </div>
+    </div>
+    <div cdkDropList [cdkDropListConnectedTo]="allGroupDropLists" (cdkDropListDropped)="dragEnd($event)" id="outside2"
+      class="side" (click)="click(null)"></div>
+  </div>
+  <div cdkDropList [cdkDropListConnectedTo]="allGroupDropLists" (cdkDropListDropped)="dragEnd($event)" id="outend"
+    class="end" (click)="click(null)"></div>
 </div>

@@ -1,0 +1,68 @@
+.content {
+  min-height: 100%;
+  background-color: #141414;
+  display: flex;
+  flex-direction: column;
+}
+.top {
+  height: 100px;
+}
+.middle {
+  display: flex;
+  justify-content: center;
+}
+.client {
+  width: 130px;
+  height: 130px;
+  border-radius: 65px;
+  background-color: #292929;
+  margin-bottom: -30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.last {
+  margin-bottom: 0px !important;
+}
+.active {
+  background: linear-gradient(90deg, #06bfff 0%, #2b75ff 100%) !important;
+  box-shadow: 0px 0px 134px #1c93ff, 0px 8px 10px rgba(0, 0, 0, 0.25);
+}
+.end {
+  min-height: 100px;
+  flex: 1 1 auto;
+}
+.side {
+  width: 100%;
+}
+.groupContainer {
+  min-width: 130px;
+  min-height: 130px;
+}
+.groupSpacer {
+  height: 47px;
+}
+.icon {
+  font-size: 60px !important;
+  width: 60px !important;
+  height: 60px !important;
+  color: white;
+}
+.editButton {
+  position: absolute;
+  margin-left: 119px;
+  background-color: #292929;
+  height: 44px;
+  width: 44px;
+  border-radius: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -22px;
+  mat-icon {
+    color: white;
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+  }
+}

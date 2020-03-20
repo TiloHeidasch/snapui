@@ -1,0 +1,37 @@
+<div class="bottomSheet">
+    <div class="indicatorHandle" (click)="toggleExpansion()">
+        <mat-icon *ngIf="!isExpanded">keyboard_arrow_up</mat-icon>
+        <mat-icon *ngIf="isExpanded">keyboard_arrow_down</mat-icon>
+    </div>
+    <div class="groupName" *ngIf="!isExpanded">
+        {{getGroupName()}}
+    </div>
+    <div class="volumeControl" *ngIf="!isExpanded">
+        <button class="mute" mat-icon-button (click)="toggleMute()">
+            <mat-icon class="muteIcon" *ngIf="!group.muted">volume_up</mat-icon>
+            <mat-icon class="muteIcon" *ngIf="group.muted">volume_off</mat-icon>
+        </button>
+        <mat-slider #groupSlider class="volumeControlSlider" [value]="groupFunctions.getGroupVolume(group)" max='100'
+            min='0' (slide)="updateGroupVolume(groupSlider.value)"></mat-slider>
+    </div>
+    <div class="detailVolumeControl" *ngIf="isExpanded">
+        <div class="volumeControl" *ngFor="let client of group.clients">
+            <div class="clientNameDetail">{{clientFunctions.getClientDisplayName(client)}}</div>
+            <button class="mute" mat-icon-button (click)="toggleClientMute(client)">
+                <mat-icon class="muteIcon" *ngIf="!client.config.volume.muted">volume_up</mat-icon>
+                <mat-icon class="muteIcon" *ngIf="client.config.volume.muted">volume_off</mat-icon>
+            </button>
+            <mat-slider #clientSlider class="volumeControlSlider" max='100' min='0'
+                [value]="clientFunctions.getClientMaxVolume(client)"
+                (slide)="updateClientVolume(client,clientSlider.value)">
+            </mat-slider>
+        </div>
+    </div>
+    <div class="streamSelection" *ngIf="isExpanded">
+        <div [ngClass]="{'stream': true,'active':stream.id===group.stream_id}" *ngFor="let stream of server.streams"
+            (click)="selectStream(stream)">
+            <img [src]="getStreamIconUrl(stream)">
+        </div>
+        <div class="dummy stream" *ngFor="let dummy of getRemainingDummies(server.streams.length)"></div>
+    </div>
+</div>
