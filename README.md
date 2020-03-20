@@ -10,9 +10,9 @@ You can use SnapUI in different ways.
 ### Using SnapCast web server
 First way is to use it natively on your snapcast server (recommended). to do that, clone or download this repo and adjust your /etc/snapserver.conf respectively:
 Edit following lines:
+
         # which port the server should listen to
         port = 80
-
         # serve a website from the doc_root location
         doc_root = /path/to/snapui/dist/snapui/
 
