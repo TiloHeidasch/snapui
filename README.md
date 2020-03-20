@@ -13,7 +13,7 @@ Edit Name and Icons
 ![SnapUI1](docs/images/snapui4.png)
 Simple Drag and Drop grouping
 
-![SnapUI1](docs/images/snapui1.png)
+![SnapUI1](docs/images/snapui5.png)
 Group Volume Control
 
 ![SnapUI1](docs/images/snapui6.png)
