@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ClickOutsideModule } from 'ng-click-outside';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,7 +20,6 @@ import { GroupBottomSheetComponent } from './group-bottom-sheet/group-bottom-she
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ClickOutsideModule,
   ],
   providers: [SnapcastService],
   bootstrap: [AppComponent],
