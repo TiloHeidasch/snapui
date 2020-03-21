@@ -9,15 +9,14 @@
   margin-left: 45px;
   margin-right: 45px;
   width: 100%;
-
-  margin-top: 35px;
 }
 .indicatorHandle {
-  margin-top: 11px;
-  width: 36px;
-  height: 8px;
-  //background: #505050;
-  //border-radius: 33px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 17px;
+  padding-top: 17px;
   mat-icon {
     color: white;
   }
@@ -61,7 +60,6 @@
 }
 
 .detailVolumeControl {
-  margin-top: 35px;
   width: 100%;
 
   .volumeControl {
