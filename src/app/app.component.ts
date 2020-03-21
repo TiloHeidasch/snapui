@@ -16,7 +16,7 @@ import { ClientFunctionsService } from './services/client-functions.service';
 })
 export class AppComponent {
   title = 'snapui';
-  server: Server;
+  server: Server = null;
   allGroupDropLists = [];
   activeGroup: Group = null;
   clientFunctions: ClientFunctionsService;

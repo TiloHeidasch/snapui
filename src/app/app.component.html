@@ -1,4 +1,4 @@
-<div class="content" *ngIf="server!=null">
+<div class="content" *ngIf="server!==null">
   <div cdkDropList [cdkDropListConnectedTo]="allGroupDropLists" (cdkDropListDropped)="dragEnd($event)" id="outtop"
     class="top" (click)="click(null)"></div>
   <div class="middle">
@@ -31,4 +31,12 @@
   </div>
   <div cdkDropList [cdkDropListConnectedTo]="allGroupDropLists" (cdkDropListDropped)="dragEnd($event)" id="outend"
     class="end" (click)="click(null)"></div>
+</div>
+<div class="content loading" *ngIf="server===null">
+  <div class="lds-ellipsis">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </div>
