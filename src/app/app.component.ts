@@ -62,6 +62,7 @@ export class AppComponent {
   }
   dragEnd(event) {
     this._bottomSheet.dismiss();
+    this.activeGroup = null;
     if (event.previousContainer === event.container) {
       //nothing to do
     } else {
