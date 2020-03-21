@@ -16,17 +16,43 @@
   height: 130px;
   border-radius: 65px;
   background-color: #292929;
-  margin-bottom: -30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
+  position: relative;
+}
+.clientContainer {
+  margin-bottom: -30px;
+  position: relative;
+}
+.clientConnector {
+  position: absolute;
+  width: 130px;
+  height: 100px;
+  top: 65px;
+  background-color: #292929;
+  z-index: 0;
+  background: radial-gradient(circle 100px at -124px 50%, transparent, transparent 131.4px, #292929 50px),
+    radial-gradient(circle 100px at 189px 50%, transparent, transparent 131.4px, #292929 50px);
+  background-size: 65px 100px, 65px 100px;
+  background-position: 0 0, 100% 0;
+  background-repeat: no-repeat;
+}
+.activeConnector {
+  background-color: #2b75ff;
+  z-index: 0;
+  background: radial-gradient(circle 100px at -124px 50%, transparent, transparent 131.4px, #06bfff 50px),
+    radial-gradient(circle 100px at 189px 50%, transparent, transparent 131.4px, #2b75ff 50px);
+  background-size: 65px 100px, 65px 100px;
+  background-position: 0 0, 100% 0;
+  background-repeat: no-repeat;
 }
 .last {
   margin-bottom: 0px !important;
 }
 .active {
   background: linear-gradient(90deg, #06bfff 0%, #2b75ff 100%) !important;
-  box-shadow: 0px 0px 134px #1c93ff, 0px 8px 10px rgba(0, 0, 0, 0.25);
 }
 .end {
   min-height: 100px;
@@ -65,4 +91,15 @@
     width: 22px;
     height: 22px;
   }
+}
+.glowRef {
+  position: absolute;
+  margin: 0;
+  height: 130px;
+  width: 130px;
+  z-index: 0;
+  border-radius: 65px;
+}
+.activeGlowRef {
+  box-shadow: 0px 0px 134px #1c93ff, 0px 8px 10px rgba(0, 0, 0, 0.25);
 }

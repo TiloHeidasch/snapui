@@ -55,7 +55,15 @@ body {
 .blackout {
   background-color: #141414 !important;
 }
-.client.cdk-drag-placeholder {
+.clientContainer.cdk-drag-placeholder {
   height: 0px;
   visibility: hidden;
+  .clientConnector {
+    visibility: hidden;
+  }
+}
+.clientContainer.cdk-drag-preview {
+  .clientConnector {
+    visibility: hidden;
+  }
 }

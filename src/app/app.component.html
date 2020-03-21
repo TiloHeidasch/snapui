@@ -5,16 +5,22 @@
     <div cdkDropList [cdkDropListConnectedTo]="allGroupDropLists" (cdkDropListDropped)="dragEnd($event)" id="outside1"
       class="side" (click)="click(null)"></div>
     <div class="groups">
-      <div cdkDropList [cdkDropListConnectedTo]="allGroupDropLists" (cdkDropListDropped)="dragEnd($event)"
-        id="{{ group.id }}" class="groupContainer" *ngFor="let group of server.groups; let i=index; last as lastGroup">
+      <div cdkDropList cdkDropListSortingDisabled [cdkDropListConnectedTo]="allGroupDropLists"
+        (cdkDropListDropped)="dragEnd($event)" id="{{ group.id }}" class="groupContainer"
+        *ngFor="let group of server.groups; let i=index; last as lastGroup">
         <div class="editButton" *ngIf="group.clients.length===1&&isGroupActive(group)"
           (click)="editClient(group.clients[0])">
           <mat-icon>edit</mat-icon>
         </div>
         <div class="group" (click)="click(group)">
-          <div [ngClass]="{'client':true, 'last':lastClient ,'active':isGroupActive(group)}"
-            *ngFor="let client of group.clients; last as lastClient" cdkDrag>
-            <mat-icon class="icon">{{clientFunctions.getClientIcon(client)}}</mat-icon>
+          <div class="clientContainer" *ngFor="let client of group.clients; last as lastClient" cdkDrag>
+            <div [ngClass]="{'glowRef': true, 'activeGlowRef':isGroupActive(group)}"></div>
+            <div *cdkDragPlaceholder style="display: none;"></div>
+            <div [ngClass]="{'client':true, 'last':lastClient ,'active':isGroupActive(group)}">
+              <mat-icon class="icon">{{clientFunctions.getClientIcon(client)}}</mat-icon>
+            </div>
+            <div [ngClass]="{'clientConnector':true, 'last':lastClient ,'activeConnector':isGroupActive(group)}"
+              *ngIf="!lastClient"></div>
           </div>
         </div>
         <div class="groupSpacer" (click)="click(null)" *ngIf="!lastGroup"></div>
