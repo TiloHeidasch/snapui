@@ -11,12 +11,16 @@ import { environment } from 'src/environments/environment';
 })
 export class SnapcastService {
 
-  connection: any;
+  connection: WebSocket;
   server: any = {};
   serverStatusRequestId = 1;
   changeSettingRequestId: number = 2;
   changeGroupClientRequestId: number = 3;
   constructor(private messageService: MessageService) {
+    this.establishConnection();
+  }
+
+  establishConnection() {
     this.connection = new WebSocket('ws://' + environment.snapcastIp + ':' + environment.snapcastPort + '/jsonrpc');
     const that = this;
     this.connection.onmessage = function (message) {
@@ -42,10 +46,15 @@ export class SnapcastService {
     }
 
     this.connection.onerror = function () {
-      alert("error");
+      if (that.connection.CLOSED) {
+        that.establishConnection();
+      } else {
+        alert("An Error occurred! Websocket is no longer established!");
+      }
     }
     window.onbeforeunload = function () {
       console.log('onbeforeunload');
+      that.messageService.broadcast("SnapcastShutdown");
       that.connection.onclose = function () { }; // disable onclose handler first
       that.connection.close();
     };
