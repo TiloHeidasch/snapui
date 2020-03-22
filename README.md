@@ -1,24 +1,21 @@
 # SnapUI
 ![CI](https://github.com/TiloHeidasch/snapui/workflows/CI/badge.svg?branch=master)
+
 SnapUI is an angular Snapcast UI that mainly targets mobile devices.
 
 ![SnapUI1](docs/images/snapui1.png)
-Simple Layout
+![SnapUI2](docs/images/snapui2.png)
+![SnapUI3](docs/images/snapui3.png)
+![SnapUI4](docs/images/snapui4.png)
+![SnapUI5](docs/images/snapui5.png)
+![SnapUI6](docs/images/snapui6.png)
 
-![SnapUI1](docs/images/snapui2.png)
-Click to adjust
-
-![SnapUI1](docs/images/snapui3.png)
-Edit Name and Icons
-
-![SnapUI1](docs/images/snapui4.png)
-Simple Drag and Drop grouping
-
-![SnapUI1](docs/images/snapui5.png)
-Group Volume Control
-
-![SnapUI1](docs/images/snapui6.png)
-Speaker Volume control and stream selection
+* Simple Layout
+* Click to adjust
+* Edit Name and Icons
+* Simple Drag and Drop grouping
+* Group Volume Control
+* Speaker Volume control and stream selection
 
 ## Design
 UX/UI concept was created by Maximilian Tränkner
@@ -30,19 +27,21 @@ You can use SnapUI in different ways.
 First way is to use it natively on your snapcast server (recommended). to do that, clone or download this repo and adjust your /etc/snapserver.conf respectively:
 Edit following lines:
 
-        # which port the server should listen to
-        port = 80
-        # serve a website from the doc_root location
-        doc_root = /path/to/snapui/dist/snapui/
+    # which port the server should listen to
+    port = 80
+    # serve a website from the doc_root location
+    doc_root = /path/to/snapui/dist/snapui/
 
 ### Using own web-server or ng-serve
 Clone the repository.
 Insert your snapcast IP and Port in `snapui/src/environments/environment.prod.ts` like:
-        export const environment = {
-            production: true,  
-            snapcastIp: 'aaa.bbb.ccc.ddd',
-            snapcastPort: 'xyz',
-        };
+
+    export const environment = {
+      production: true,  
+      snapcastIp: 'aaa.bbb.ccc.ddd',
+      snapcastPort: 'xyz',
+    };
+    
 Install node.
 Install dependancies with `npm install`
 Build the package with `npm build --prod`.
