@@ -1,4 +1,5 @@
 # SnapUI
+![CI](https://github.com/TiloHeidasch/snapui/workflows/CI/badge.svg?branch=master)
 SnapUI is an angular Snapcast UI that mainly targets mobile devices.
 
 ![SnapUI1](docs/images/snapui1.png)
