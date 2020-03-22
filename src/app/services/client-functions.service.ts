@@ -41,9 +41,7 @@ export class ClientFunctionsService {
     }
   }
   private isClientNameAnObject(client: Client): boolean {
-    //console.log({ 'isClientNameAnObject': client });
     if (client.config.name.displayName !== undefined) {
-      //console.log({ 'isClientNameAnObject.client.config.name.displayName': client.config.name.displayName });
       return true;
     }
     try {

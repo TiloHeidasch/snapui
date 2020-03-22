@@ -25,10 +25,8 @@ export class SnapcastService {
     const that = this;
     this.connection.onmessage = function (message) {
       var recv = message.data;
-      //console.log(message);
 
       var answer = JSON.parse(recv);
-      console.log(answer);
       if (answer.id === that.serverStatusRequestId || answer.id === that.changeGroupClientRequestId) {
         that.server = answer.result;
         that.publishChange();
@@ -53,7 +51,7 @@ export class SnapcastService {
       }
     }
     window.onbeforeunload = function () {
-      console.log('onbeforeunload');
+      if (!environment.production) console.log('onbeforeunload');
       that.messageService.broadcast("SnapcastShutdown");
       that.connection.onclose = function () { }; // disable onclose handler first
       that.connection.close();
@@ -110,7 +108,6 @@ export class SnapcastService {
       for (let i_client = 0; i_client < this.server.server.groups[i_group].clients.length; i_client++) {
         if (this.server.server.groups[i_group].clients[i_client].id == params.client.id) {
           this.server.server.groups[i_group].clients[i_client] = params.client;
-          //  console.log(server.server.groups[i_group].clients[i_client]); 
         }
       }
     }

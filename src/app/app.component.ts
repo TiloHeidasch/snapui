@@ -8,6 +8,7 @@ import { GroupBottomSheetComponent } from './group-bottom-sheet/group-bottom-she
 import { Client } from './types/client';
 import { EditClientDialogComponent } from './edit-client-dialog/edit-client-dialog.component';
 import { ClientFunctionsService } from './services/client-functions.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -24,13 +25,11 @@ export class AppComponent {
     this.clientFunctions = clientFunctionsService;
   }
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.messageService.on<string>("SnapcastShutdown").subscribe(() => {
       this.server = null;
     })
     this.messageService.on<string>('SnapcastServerUpdate').subscribe(server => {
-      //console.log(server);
+      if (!environment.production) console.log(server);
       this.server = server;
       this.allGroupDropLists = [...this.server.groups.map(group => group.id), 'outtop', 'outside1', 'outside2', 'outend'];
     })
