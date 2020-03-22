@@ -31,3 +31,9 @@ jobs:
       run: npm install -g @angular/cli
     - name: Build
       run: ng build --prod
+    - name: Publish Result
+      uses: actions/upload-artifact@v1
+      with:
+        name: dist
+        path: dist/
+        
